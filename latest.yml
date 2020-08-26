@@ -1,0 +1,10 @@
+- name: latest version of required packages is installed
+      yum:
+        name:
+          - firewalld
+          - httpd
+          - mariadb-server
+          - php
+          - php-mysqlnd
+          - tmux
+        state: latest
