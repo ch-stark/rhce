@@ -18,3 +18,24 @@ https://gist.github.com/treyd/e4841e13851f81f76eb683a4d097a85e
       loop:
         - alice
         - vincent
+
+- name: Turn off password authentication
+  become: true
+  replace:
+    path: /etc/ssh/sshd_config
+    regexp: "PasswordAuthentication yes"
+    replace: "PasswordAuthentication no"
+
+- name: Turn off challenge response authentication
+  become: true
+  replace:
+    path: /etc/ssh/sshd_config
+    regexp: "ChallengeResponseAuthentication yes"
+    replace: "ChallengeResponseAuthentication no"
+
+- name: Turn off GSSAPI authentication
+  become: true
+  replace:
+    path: /etc/ssh/sshd_config
+    regexp: "GSSAPIAuthentication yes"
+    replace: "GSSAPIAuthentication no"
