@@ -1,2 +1,20 @@
 https://www.lisenet.com/2019/ansible-sample-exam-for-ex407/
 https://gist.github.com/treyd/e4841e13851f81f76eb683a4d097a85e
+
+---
+- name: Create New Users
+  hosts: all
+  become: true
+  gather_facts: false
+  vars_files:
+    - my_vault.yml
+  tasks:
+    - name: Create Users
+      user:
+        name: "{{ item }}"
+        password: "{{ my_password | password_hash('sha512') }}"
+        shell: /bin/bash
+        update_password: on_create
+      loop:
+        - alice
+        - vincent
